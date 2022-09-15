@@ -1,5 +1,6 @@
 import Toybox.Lang;
 import Toybox.WatchUi;
+import Toybox.System;
 
 class ShowerTutorialDelegate extends WatchUi.BehaviorDelegate {
 
@@ -7,9 +8,7 @@ class ShowerTutorialDelegate extends WatchUi.BehaviorDelegate {
         BehaviorDelegate.initialize();
     }
 
-    function onMenu() as Boolean {
-        WatchUi.pushView(new Rez.Menus.MainMenu(), new ShowerTutorialMenuDelegate(), WatchUi.SLIDE_UP);
-        return true;
+    function onSelect() as Void {
+        System.println("Selected");
     }
-
 }
