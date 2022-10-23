@@ -1,7 +1,7 @@
 <layout id="MainLayout">
     <label
         id="type_title"
-        text="COLD"
+        text="HOT"
         x="center"
         y="20%"
         font="Gfx.FONT_MEDIUM"
@@ -9,7 +9,7 @@
     />
     <label
         id="current_timer"
-        text="0:30"
+        text="0:10"
         x="center"
         y="center"
         font="Gfx.FONT_NUMBER_THAI_HOT"

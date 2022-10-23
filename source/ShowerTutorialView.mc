@@ -17,6 +17,10 @@ class ShowerTutorialView extends WatchUi.View {
         _typeTitleElement = findDrawableById("type_title");
         _currentTimerElement = findDrawableById("current_timer");
         _cylclesLeftElement = findDrawableById("cylcles_left");
+
+        setWaterTypeValue((DataManager.getCyclesCount() - 1) % 2 == 0 ? WaterType.Hot : WaterType.Cold);
+        setTimerValue(DataManager.getCycleDuration());
+        updateCyclesValue(DataManager.getCyclesCount());
     }
 
     // Called when this View is brought to the foreground. Restore

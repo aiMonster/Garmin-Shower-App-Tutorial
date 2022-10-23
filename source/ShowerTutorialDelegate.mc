@@ -4,9 +4,6 @@ import Toybox.System;
 import Toybox.Timer;
 
 class ShowerTutorialDelegate extends WatchUi.BehaviorDelegate {
-    private static var cycles = 5;
-    private static var cycleDuration = 30;
-
     private var _inProgress = false;
 
     private var _currentDuration;
@@ -30,18 +27,32 @@ class ShowerTutorialDelegate extends WatchUi.BehaviorDelegate {
 
     // Starts countdown
     function startCountdown() {
-        _currentDuration = cycleDuration;
+        _currentDuration = DataManager.getCycleDuration() - 1;
+        _currentCycle = DataManager.getCyclesCount() - 1;
+
+        _view.updateCyclesValue(_currentCycle);
+        _view.setTimerValue(_currentDuration);
 
         _timer = new Timer.Timer();
         _timer.start(method(:updateCountdownValue), 1000, true);
     }
 
     function updateCountdownValue() {
-        if (_currentDuration == 0) {
+        if (_currentDuration == 0 && _currentCycle == 0) {
             _timer.stop();
+
+            return;
         }
 
-        _view.setTimerValue(_currentDuration);
+        if(_currentDuration == 0) {
+            _currentDuration = DataManager.getCycleDuration();
+
+            _currentCycle--;
+            _view.updateCyclesValue(_currentCycle);
+            _view.setWaterTypeValue(_currentCycle % 2 == 0 ? WaterType.Hot : WaterType.Cold);
+        }
+
         _currentDuration--;
+        _view.setTimerValue(_currentDuration);
     }
 }
